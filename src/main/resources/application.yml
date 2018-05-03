@@ -1,0 +1,11 @@
+spring:
+  jpa:
+    database: MYSQL
+    hibernate:
+      ddl-auto: create
+
+  datasource:
+    url: jdbc:mysql://192.168.99.102:3306/db_hikari_example?useSSL=false
+    username: springboot
+    password: ThePassword
+    driver-class-name: com.mysql.jdbc.Driver
