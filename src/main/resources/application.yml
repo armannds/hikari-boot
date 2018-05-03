@@ -5,7 +5,7 @@ spring:
       ddl-auto: create
 
   datasource:
-    url: jdbc:mysql://192.168.99.102:3306/db_hikari_example?useSSL=false
-    username: springboot
-    password: ThePassword
-    driver-class-name: com.mysql.jdbc.Driver
+    url: ${jdbc.url}
+    username: ${jdbc.user}
+    password: ${jdbc.password}
+    driver-class-name: ${jdbc.driver}
