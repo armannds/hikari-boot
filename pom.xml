@@ -87,29 +87,34 @@
                         <goals>
                             <goal>generate</goal>
                         </goals>
+                        <configuration>
+                            <generator>
+                                <database>
+                                    <name>org.jooq.util.jpa.JPADatabase</name>
+                                    <properties>
+                                        <property>
+                                            <key>packages</key>
+                                            <value>com.armannds.hikariboot.entity</value>
+                                        </property>
+                                    </properties>
+                                    <includes>.*</includes>
+                                </database>
+                                <generate/>
+                                <target>
+                                    <packageName>com.armannds.hikariboot.generated</packageName>
+                                    <directory>src/main/java</directory>
+                                </target>
+                            </generator>
+                        </configuration>
                     </execution>
                 </executions>
-                <dependencies/>
-                <configuration>
-                    <jdbc>
-                        <driver>${jdbc.driver}</driver>
-                        <url>${jdbc.url}</url>
-                        <user>${jdbc.user}</user>
-                        <password>${jdbc.password}</password>
-                    </jdbc>
-                    <generator>
-                        <database>
-                            <name>org.jooq.util.mysql.MySQLDatabase</name>
-                            <includes>.*</includes>
-                            <excludes/>
-                            <inputSchema>${jdbc.scheme}</inputSchema>
-                        </database>
-                        <target>
-                            <packageName>com.armannds.hikariboot.generated</packageName>
-                            <directory>src/main/java</directory>
-                        </target>
-                    </generator>
-                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.jooq</groupId>
+                        <artifactId>jooq-meta-extensions</artifactId>
+                        <version>3.10.6</version>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
     </build>
@@ -123,7 +128,7 @@
             <properties>
                 <jdbc.user>springboot</jdbc.user>
                 <jdbc.password>ThePassword</jdbc.password>
-                <jdbc.url>jdbc:mysql://192.168.99.102:3306/${jdbc.scheme}?useSSL=false</jdbc.url>
+                <jdbc.url>jdbc:mysql://192.168.99.102:3306/${jdbc.scheme}?verifyServerCertificate?=false&amp;useSSL=false&amp;allowPublicKeyRetrieval=true</jdbc.url>
                 <jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
                 <jdbc.scheme>db_hikari_example</jdbc.scheme>
             </properties>
